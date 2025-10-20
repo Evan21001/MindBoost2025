@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MindBoost</string>
+    <string name="login">Iniciando Sesión....</string>
+
+    <!-- Login -->
+    <string name="login_screen_text">Iniciar sesión</string>
+    <string name="login_screen_login_button">Iniciar sesión</string>
+    <string name="login_screen_register_button">¿No tienes cuenta? Crea una acá</string>
+    <string name="login_screen_success">Inicio de sesión correcto</string>
+    <string name="login_screen_fail_message">Fallo el inicio de sesión</string>
+    <string name="login_screen_validation_email_empty">El correo es requerido</string>
+    <string name="login_screen_validation_email_invalid">El correo es inválido</string>
+    <string name="login_screen_validation_password_empty">La contraseña es requerida</string>
+    <string name="login_screen_validation_password_short">La contraseña debe tener al menos 6 caracteres</string>
+
+    <!-- Register -->
+    <string name="register_screen_text">Crea tu cuenta</string>
+    <string name="register_screen_register_button">Crear cuenta</string>
+    <string name="register_screen_success">Registro exitoso</string>
+    <string name="register_screen_password_mismatch">Las contraseñas no coinciden</string>
+
+    <!-- Fields -->
+    <string name="fields_email">Correo electrónico</string>
+    <string name="fields_password">Contraseña</string>
+    <string name="fields_confirm_password">Confirmar contraseña</string>
+    <string name="fields_name">Nombre</string>
+    <string name="fields_age">Edad</string>
+
+    <!-- Create Profile / Onboarding -->
+    <string name="create_profile_screen_title">Crear perfil</string>
+    <string name="create_profile_screen_continue">Continuar</string>
+    <string name="create_profile_screen_select_habits">Selecciona tus hábitos iniciales</string>
+    <string name="create_profile_screen_habits_error">Debes ingresar nombre, edad y al menos un hábito</string>
+    <string name="create_profile_screen_saved">Datos guardados correctamente</string>
+    <string name="fields_gender">Género</string>
+    <string name="gender_male">Hombre</string>
+    <string name="gender_female">Mujer</string>
+    <string name="gender_other">Otro</string>
+    <string name="fields_available_hours">Horas disponibles por día</string>
+    <string name="fields_habits">Selecciona tus hábitos (máx. 2)</string>
+    <string name="error_select_habits">Selecciona al menos 1 hábito y máximo 2</string>
+    <string name="error_hours_required">Ingresa horas disponibles válidas</string>
+    <string name="create_profile_screen_gender_required">Selecciona un género</string>
+    <string name="create_profile_screen_hours_required">Ingresa las horas disponibles</string>
+    <string name="create_profile_screen_hours_invalid">Ingresa un número válido de horas</string>
+    <string name="create_profile_screen_habits_limit">Solo puedes seleccionar 2 hábitos</string>
+
+
+    <!-- Users -->
+    <string name="user_form_screen_email">Email</string>
+    <string name="users_screen_title">Usuarios</string>
+    <string name="users_screen_new_user">Nuevo usuario</string>
+    <string name="users_screen_roles">Roles</string>
+
+    <!-- Icon descriptions -->
+    <string name="icon_exit">Salir</string>
+    <string name="icon_register_back">Volver</string>
+    <string name="icon_login">Icono usuario</string>
+    <string name="icon_email">Icono de correo</string>
+    <string name="icon_password">Icono de contraseña</string>
+    <string name="icon_confirm_password">Confirmar contraseña</string>
+    <string name="icon_user">Icono de usuario</string>
+
+    <string name="button_save">Guardar</string>
+
+    <!-- home -->
+    <string name="home_screen_title">Inicio</string>
+    <string name="home_screen_profile_button">Ver perfil</string>
+    <string name="home_title">MindBoost</string>
+    <string name="home_profile_button">Perfil</string>
+    <string name="home_create_habit_button">Registrar Hábitos</string>
+    <string name="home_stats_button">Estadísticas</string>
+    <string name="home_recommendations_button">Recomendaciones</string>
+    <string name="home_medals_button">Medallas</string>
+    <string name="home_back">Fondo</string>
+    <string name="Test_notifications">Probar Notificación</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_screen_title">Perfil de usuario</string>
+    <string name="profile_screen_name">Nombre: </string>
+    <string name="profile_screen_age">Edad: </string>
+    <string name="profile_screen_gender">Género: </string>
+    <string name="profile_screen_hours">Horas disponibles: </string>
+    <string name="profile_screen_habits">Hábitos: </string>
+    <string name="profile_screen_logout">Cerrar sesión</string>
+    <string name="profile_screen_loading">Cargando datos...</string>
+    <string name="profile_loading">Cargando perfil...</string>
+    <string name="profile_logout_button">Cerrar sesión</string>
+    <string name="profile_edit_button">Editar perfil</string>
+    <string name="profile_save_button">Guardar cambios</string>
+    <string name="profile_edit_success">Perfil actualizado correctamente</string>
+    <string name="profile_edit_fail">Error al actualizar perfil</string>
+    <string name="profile_edit_invalid">Por favor completa los campos correctamente</string>
+    <string name="back_to_home">Volver al inicio</string>
+    <string name="profile_updated">Perfil actualizado correctamente</string>
+    <string name="profile_cancel_button">Cancelar</string>
+    <string name="profile_streak_label">Racha</string>
+    <string name="profile_streak_days">días</string>
+    <string name="dailylog_skip_button">Omitir día</string>
+
+
+    <string name="create_habit_title">Registrar Hábitos</string>
+    <string name="create_habit_name">Nombre del hábito</string>
+    <string name="create_habit_hours">Horas por día</string>
+    <string name="create_habit_save_button">Guardar Hábitos</string>
+    <string name="create_habit_success">Hábito registrado con éxito</string>
+    <string name="error_habit_name">Ingrese un nombre válido</string>
+    <string name="error_habit_hours">Ingrese un número válido de horas</string>
+    <string name="create_habit_screen_title">Registrar nuevos hábitos</string>
+    <string name="create_habit_name_label">Nombre del hábito</string>
+    <string name="create_habit_error_empty">Debes ingresar un nombre válido</string>
+    <string name="create_habit_error_max">No puedes tener más de 4 hábitos</string>
+    <string name="create_habit_current_list">Tus hábitos actuales</string>
+    <string name="create_habit_screen_instruction">
+        Elige hasta 5 hábitos que quieras seguir.
+    </string>
+    <string name="habit_selected">Seleccionado</string>
+    <string name="habit_selection_limit">Has alcanzado el límite de 4 hábitos</string>
+    <string name="select_at_least_one_habit">Selecciona al menos un hábito</string>
+    <string name="habits_saved_success">Hábitos guardados correctamente</string>
+    <string name="save_button">Guardar</string>
+    <string name="cancel_button">Cancelar</string>
+
+    <string name="create_habit_select_max">Selecciona tus hábitos (máx. 4)</string>
+    <string name="create_habit_max_limit">Has alcanzado el límite de 4 hábitos</string>
+    <string name="create_habit_saved">Hábitos guardados correctamente</string>
+    <string name="create_habit_cancel_button">Cancelar</string>
+    <string name="create_habit_min_limit">Debe haber al menos un hábito seleccionado</string>
+
+    <!-- Habits -->
+    <string name="habit_sleep">Sueño</string>
+    <string name="habit_exercise">Ejercicio</string>
+    <string name="habit_study">Estudiar</string>
+    <string name="habit_reading">Lectura</string>
+    <string name="habit_meditation">Meditación</string>
+    <string name="habit_learning">Aprendizaje</string>
+    <string name="habit_journaling">Escribir diario</string>
+    <string name="habit_coding">Programación</string>
+    <string name="habit_drinking_water">Beber agua</string>
+
+    <!-- Stats -->
+    <string name="stats_title">Estadísticas</string>
+    <string name="stats_back_home">Volver al Home</string>
+    <string name="stats_no_habits">No se han registrado hábitos hoy</string>
+
+    <string name="stats_completed">Completados</string>
+    <string name="stats_possible">Posibles</string>
+    <string name="stats_from">Desde</string>
+    <string name="stats_bar_label">Progreso de hábitos</string>
+    <string name="stats_no_data">No hay datos para mostrar</string>
+    <string name="stats_daily_avg">Promedio diario de hábitos</string>
+
+    <!-- Promedio de hábitos diarios -->
+    <string name="stats_average">Promedio</string>
+    <string name="stats_daily_average">Promedio diario de hábitos</string>
+
+    <!-- Recommendations -->
+    <string name="recommendations_title">Recomendaciones</string>
+    <string name="recommendations_back_home">Volver al Home</string>
+
+
+    <!-- Medals -->
+    <string name="medals_title">Medallas</string>
+    <string name="medals_back_home">Volver al Home</string>
+    <string name="medals_subtitle">Desbloquea logros al mantener tus hábitos y verás tus medallas coloreadas.</string>
+    <string name="medals_note_test">(Toca una medalla para simular su desbloqueo durante las pruebas)</string>
+    <string name="medals_already_unlocked">Ya desbloqueada</string>
+
+    <!-- Achievement dialog -->
+    <string name="achievement_unlocked_title">¡Logro desbloqueado!</string>
+    <string name="achievement_unlocked_msg">Has desbloqueado: %1$s</string>
+    <string name="ok">OK</string>
+
+    <!-- Sample achievements (títulos y descripciones) -->
+    <string name="achv_streak_3_title">Racha: 3 días</string>
+    <string name="achv_streak_3_desc">Registra tu progreso 3 días seguidos.</string>
+
+    <string name="achv_streak_7_title">Racha: 7 días</string>
+    <string name="achv_streak_7_desc">Registra tu progreso 7 días seguidos.</string>
+
+    <string name="achv_avg80_title">Promedio 80%</string>
+    <string name="achv_avg80_desc">Mantén un promedio de cumplimiento ≥ 80%.</string>
+
+    <!-- Daily Log -->
+    <string name="dailylog_title">Registro diario</string>
+    <string name="dailylog_save_button">Guardar registro</string>
+    <string name="dailylog_saved">Registro guardado</string>
+    <string name="dailylog_empty">No tienes hábitos activos. Agrega uno desde Crear hábito.</string>
+    <string name="dailylog_back_home">Volver al Home</string>
+    <string name="dailylog_select_at_least_one">Elige al menos un hábito o presiona Volver al Home para saltar</string>
+
+
+    <string name="dailylog_duration_label">Tiempo de práctica (min)</string>
+    <string name="dailylog_notes_label">Notas del día</string>
+    <string name="dailylog_error_nohabit">Selecciona al menos un hábito o presiona volver a home</string>
+
+    <!-- Reutilizable -->
+    <string name="loading_text">Cargando...</string>
+
+    <!-- Logros -->
+    <string name="achievement_first_habit_title">¡Primer Hábito!</string>
+    <string name="achievement_first_habit_desc">Has completado tu primer hábito. ¡Sigue así!</string>
+
+    <string name="achievement_streak_3_title">Racha de 3 días</string>
+    <string name="achievement_streak_3_desc">Has completado tus hábitos 3 días consecutivos. ¡Genial!</string>
+
+    <string name="achievement_streak_7_title">Racha de 7 días</string>
+    <string name="achievement_streak_7_desc">Has completado tus hábitos 7 días seguidos. ¡Increíble!</string>
+    <string name="medals_locked_msg">Aún no has desbloqueado este logro.</string>
+    <string name="achievement_streak3_title">Racha de 3 días</string>
+    <string name="achievement_streak3_desc">Has mantenido una racha de 3 días seguidos completando tus hábitos.</string>
+
+    <string name="achievement_streak7_title">Racha de 7 días</string>
+    <string name="achievement_streak7_desc">Has completado una semana completa de progreso continuo.</string>
+
+    <string name="achievement_avg8_title">Promedio excelente</string>
+    <string name="achievement_avg8_desc">Has alcanzado un promedio de 8 o más en tus hábitos.</string>
+
+    <!-- Notificaciones -->
+    <string name="channel_name">Recordatorios MindBoost</string>
+    <string name="channel_description">Notificaciones diarias para mantener tus hábitos activos</string>
+    <string name="notification_title">MindBoost Recordatorio</string>
+    <string name="notification_text">¡Hora de registrar tus hábitos y mantener tu racha! 💪</string>
+    <string name="notification_channel_name">Recordatorios de hábitos</string>
+    <string name="notification_channel_desc">Canal para notificaciones de hábitos diarios</string>
+    <string name="notification_message">No olvides registrar tus hábitos de hoy</string>
+
+</resources>
+
