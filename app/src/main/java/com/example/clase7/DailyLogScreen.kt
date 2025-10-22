@@ -1,4 +1,4 @@
-package com.example.clase7.screens
+package com.example.clase7
 
 import android.widget.Toast
 import androidx.compose.animation.core.animateFloatAsState
@@ -42,6 +42,7 @@ import java.util.*
 fun DailyLogScreen(navController: NavController, userId: String?, skipDailyRedirect: MutableState<Boolean>) {
     val db = FirebaseFirestore.getInstance()
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
 
     val today = remember {
         SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
@@ -105,9 +106,9 @@ fun DailyLogScreen(navController: NavController, userId: String?, skipDailyRedir
                 }
             } catch (e: Exception) {
                 showErrorToast = true
-            }
-            loading = false
-        }
+                            }
+                            loading = false
+                        }
     }
 
     Box(
@@ -296,10 +297,10 @@ fun DailyLogScreen(navController: NavController, userId: String?, skipDailyRedir
                                 fontWeight = FontWeight.SemiBold
                             )
                         }
-                        
-                        OutlinedTextField(
-                            value = notes,
-                            onValueChange = { notes = it },
+
+        OutlinedTextField(
+            value = notes,
+            onValueChange = { notes = it },
                             placeholder = {
                                 Text(
                                     text = "Escribe tus pensamientos o progresos del día...",
@@ -327,48 +328,77 @@ fun DailyLogScreen(navController: NavController, userId: String?, skipDailyRedir
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     // Botón Guardar
-                    Button(
-                        onClick = {
-                            if (checked.values.none { it }) {
-                                showErrorToast = true
-                                return@Button
-                            }
-                            userId?.let { uid ->
-                                val dataToSave = mutableMapOf<String, Any>()
-                                checked.forEach { (habit, done) ->
-                                    dataToSave[habit] = done
-                                    dataToSave["${habit}_duration"] = durations[habit]?.toLongOrNull() ?: 0L
-                                }
-                                dataToSave["notes"] = notes
-                                dataToSave["timestamp"] = FieldValue.serverTimestamp()
-
-                                val userRef = db.collection("users").document(uid)
-                                userRef.collection("habitLogs").document(today)
-                                    .set(dataToSave)
-                                    .addOnSuccessListener {
-                                        showSuccessAnimation = true
-                                        skipDailyRedirect.value = true
-                                        
-                                        // Navegar a stats después de un breve delay
-                                        kotlinx.coroutines.GlobalScope.launch {
-                                            kotlinx.coroutines.delay(1500)
-                                            navController.navigate("stats") {
-                                                popUpTo("dailylog") { inclusive = true }
+        Button(
+            onClick = {
+                if (checked.values.none { it }) {
+                    showErrorToast = true
+                    return@Button
+                }
+                            
+                userId?.let { uid ->
+                                coroutineScope.launch {
+                                    try {
+                    val dataToSave = mutableMapOf<String, Any>()
+                    checked.forEach { (habit, done) ->
+                        dataToSave[habit] = done
+                                            durations[habit]?.let { duration ->
+                                                dataToSave["${habit}_duration"] = duration.toLongOrNull() ?: 0L
                                             }
+                    }
+                    dataToSave["notes"] = notes
+                    dataToSave["timestamp"] = FieldValue.serverTimestamp()
+
+                    val userRef = db.collection("users").document(uid)
+                    userRef.collection("habitLogs").document(today)
+                        .set(dataToSave)
+                                            .await()
+                                        
+                                        // Actualizar streak count
+                                        val userDoc = userRef.get().await()
+                                        val currentStreak = userDoc.getLong("streakCount") ?: 0L
+                                        val lastLogDate = userDoc.getString("lastLogDate")
+                                        
+                                        val yesterday = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                                            .format(Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000))
+                                        
+                                        val newStreak = if (lastLogDate == yesterday) {
+                                            currentStreak + 1
+                                        } else if (lastLogDate == today) {
+                                            currentStreak
+                                        } else {
+                                            1L
                                         }
-                                    }
-                                    .addOnFailureListener { e ->
-                                        showErrorToast = true
-                                    }
+                                        
+                                        userRef.update(
+                                            mapOf(
+                                                "streakCount" to newStreak,
+                                                "lastLogDate" to today
+                                            )
+                                        ).await()
+                                        
+                                        showSuccessAnimation = true
+                            skipDailyRedirect.value = true
+
+                                        // Navegar a stats después de un breve delay
+                                        kotlinx.coroutines.delay(1500)
+                            navController.navigate("stats") {
+                                popUpTo("dailylog") { inclusive = true }
                             }
-                        },
-                        colors = ButtonDefaults.buttonColors(
+                                        
+                                    } catch (e: Exception) {
+                                        showErrorToast = true
+                                        android.util.Log.e("DailyLogScreen", "Error saving log: ${e.message}")
+                        }
+                        }
+                }
+            },
+            colors = ButtonDefaults.buttonColors(
                             containerColor = MindBoostSecondary,
-                            contentColor = Color.White
-                        ),
+                contentColor = Color.White
+            ),
                         shape = RoundedCornerShape(16.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                             .height(56.dp)
                     ) {
                         Text(
@@ -381,8 +411,8 @@ fun DailyLogScreen(navController: NavController, userId: String?, skipDailyRedir
                     Spacer(modifier = Modifier.height(16.dp))
 
                     // Botón Ir al Menú Principal
-                    Button(
-                        onClick = {
+        Button(
+            onClick = {
                             navController.navigate("home") {
                                 popUpTo("dailylog") { inclusive = false }
                             }
@@ -408,18 +438,18 @@ fun DailyLogScreen(navController: NavController, userId: String?, skipDailyRedir
                     // Botón Omitir día
                     Button(
                         onClick = {
-                            skipDailyRedirect.value = true
-                            navController.navigate("home") {
-                                popUpTo("dailylog") { inclusive = true }
-                            }
-                        },
-                        colors = ButtonDefaults.buttonColors(
+                skipDailyRedirect.value = true
+                navController.navigate("home") {
+                    popUpTo("dailylog") { inclusive = true }
+                }
+            },
+            colors = ButtonDefaults.buttonColors(
                             containerColor = Color(0xFFB0B0B0),
                             contentColor = MindBoostText
-                        ),
+            ),
                         shape = RoundedCornerShape(16.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                             .height(56.dp)
                     ) {
                         Text(
@@ -499,7 +529,7 @@ fun DailyLogScreen(navController: NavController, userId: String?, skipDailyRedir
             }
         )
     }
-}
+    }
 
 @Composable
 fun HabitCard(

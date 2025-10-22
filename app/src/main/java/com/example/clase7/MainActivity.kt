@@ -45,7 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.clase7.notifications.NotificationUtils
-import com.example.clase7.screens.DailyLogScreen
+import com.example.clase7.DailyLogScreen
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
 

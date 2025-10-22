@@ -33,14 +33,22 @@ object AchievementManager {
 
     private fun loadUnlockedAchievements() {
         CoroutineScope(Dispatchers.IO).launch {
-            achievementsList.forEach { ach ->
-                val doc = firestore.collection("users")
-                    .document(currentUserId)
-                    .collection("achievements")
-                    .document(ach.id)
-                    .get()
-                    .await()
-                unlocked[ach.id] = doc.exists()
+            try {
+                achievementsList.forEach { ach ->
+                    val doc = firestore.collection("users")
+                        .document(currentUserId)
+                        .collection("achievements")
+                        .document(ach.id)
+                        .get()
+                        .await()
+                    unlocked[ach.id] = doc.exists()
+                }
+            } catch (e: Exception) {
+                android.util.Log.e("AchievementManager", "Error loading achievements: ${e.message}")
+                // Initialize with all false if there's an error
+                achievementsList.forEach { ach ->
+                    unlocked[ach.id] = false
+                }
             }
         }
     }
@@ -68,24 +76,28 @@ object AchievementManager {
      * Desbloquea o bloquea un logro según corresponda
      */
     private suspend fun updateAchievement(ach: Achievement, shouldUnlock: Boolean) {
-        val currentlyUnlocked = unlocked[ach.id] == true
-        val userRef = firestore.collection("users")
-            .document(currentUserId)
-            .collection("achievements")
-            .document(ach.id)
+        try {
+            val currentlyUnlocked = unlocked[ach.id] == true
+            val userRef = firestore.collection("users")
+                .document(currentUserId)
+                .collection("achievements")
+                .document(ach.id)
 
-        if (shouldUnlock && !currentlyUnlocked) {
-            // desbloquear
-            userRef.set(mapOf("unlockedAt" to System.currentTimeMillis())).await()
-            unlocked[ach.id] = true
-            lastUnlockedAchievement = ach
-        } else if (!shouldUnlock && currentlyUnlocked) {
-            // bloquear
-            userRef.delete().await()
-            unlocked[ach.id] = false
-            if (lastUnlockedAchievement?.id == ach.id) {
-                lastUnlockedAchievement = null
+            if (shouldUnlock && !currentlyUnlocked) {
+                // desbloquear
+                userRef.set(mapOf("unlockedAt" to System.currentTimeMillis())).await()
+                unlocked[ach.id] = true
+                lastUnlockedAchievement = ach
+            } else if (!shouldUnlock && currentlyUnlocked) {
+                // bloquear
+                userRef.delete().await()
+                unlocked[ach.id] = false
+                if (lastUnlockedAchievement?.id == ach.id) {
+                    lastUnlockedAchievement = null
+                }
             }
+        } catch (e: Exception) {
+            android.util.Log.e("AchievementManager", "Error updating achievement ${ach.id}: ${e.message}")
         }
     }
 
